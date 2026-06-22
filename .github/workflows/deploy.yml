@@ -26,7 +26,7 @@ jobs:
         uses: google-github-actions/auth@v2
         with:
           workload_identity_provider: "projects/750945171539/locations/global/workloadIdentityPools/github-pool/providers/github-provider"
-          service_account: "dev-504@dev1-500207.iam.gserviceaccount.com"
+          service_account: "dev-777@project-ebf080ef-f8f0-47b3-806.iam.gserviceaccount.com"
 
       - name: Setup GCloud
         uses: google-github-actions/setup-gcloud@v2
