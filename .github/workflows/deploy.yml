@@ -25,7 +25,7 @@ jobs:
       - name: Authenticate to GCP
         uses: google-github-actions/auth@v2
         with:
-          workload_identity_provider: "projects/750945171539/locations/global/workloadIdentityPools/github-pool/providers/github-provider"
+          workload_identity_provider: "projects/844840119181/locations/global/workloadIdentityPools/github-pool/providers/github-provider"
           service_account: "dev-777@project-ebf080ef-f8f0-47b3-806.iam.gserviceaccount.com"
 
       - name: Setup GCloud
@@ -44,18 +44,18 @@ jobs:
       - name: Build Image
         run: |
           docker build \
-            -t us-central1-docker.pkg.dev/dev1-500207/app-repo/${IMAGE_NAME}:${{ github.sha }} \
+            -t us-central1-docker.pkg.dev/project-ebf080ef-f8f0-47b3-806/app-repo/${IMAGE_NAME}:${{ github.sha }} \
             ./app
 
       - name: Push Image
         run: |
           docker push \
-            us-central1-docker.pkg.dev/dev1-500207/app-repo/${IMAGE_NAME}:${{ github.sha }}
+            us-central1-docker.pkg.dev/project-ebf080ef-f8f0-47b3-806/app-repo/${IMAGE_NAME}:${{ github.sha }}
 
       - name: Deploy Cloud Run
         run: |
           gcloud run deploy ${SERVICE_NAME} \
-            --image us-central1-docker.pkg.dev/dev1-500207/app-repo/${IMAGE_NAME}:${{ github.sha }} \
+            --image us-central1-docker.pkg.dev/project-ebf080ef-f8f0-47b3-806/app-repo/${IMAGE_NAME}:${{ github.sha }} \
             --region us-central1 \
             --platform managed \
             --allow-unauthenticated
